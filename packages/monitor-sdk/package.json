@@ -1,0 +1,15 @@
+{
+  "name": "xingzhi-monitor-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "user-agent": "^1.0.4"
+  }
+}

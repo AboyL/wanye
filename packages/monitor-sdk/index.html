@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端监控SDK</title>
+</head>
+
+<body>
+    <div id="container">
+        <input type="button" value="点击抛出错误" onclick="errorClick()">
+    </div>
+    <script>
+        function errorClick() {
+            window.test.xxx = 'xxxxx'
+        }
+    </script>
+</body>
+
+</html>
