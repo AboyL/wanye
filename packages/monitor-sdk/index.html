@@ -9,13 +9,34 @@
 
 <body>
     <div id="container">
-        <input type="button" value="点击抛出错误" onclick="errorClick()">
+        <input id="js-error" type="button" value="点击抛出错误" onclick="errorClick()">
+        <input id="promise-error1" type="button" value="promise Error1" onclick="promiseError1()">
+        <input id="promise-error2" type="button" value="promise Error2" onclick="promiseError2()">
     </div>
+
     <script>
         function errorClick() {
             window.test.xxx = 'xxxxx'
         }
+
+        function promiseError1() {
+            return new Promise((resolve, reject) => {
+                reject('error1')
+            })
+        }
+
+        function promiseError1() {
+            return new Promise((resolve, reject) => {
+                // reject('error1')
+                window.test.xxx = 'xxxxx'
+            })
+        }
+        const handleError = (e) => {
+            console.log('e', e)
+        }
     </script>
+    <!-- 资源错误加载 -->
+    <script src="404.js"></script>
 </body>
 
 </html>

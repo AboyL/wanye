@@ -9,10 +9,11 @@ module.exports = {
     filename: 'monitor.js'//文件名
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    compress: true,
+    // allowedHosts:'all',
+    // static: {
+    //   directory: path.join(__dirname, 'dist'),
+    // },
+    // compress: true,
     port: 9000,
   },
   resolve: {
@@ -29,7 +30,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({//自动打包出HTML文件的
       template: './index.html',
-      inject: 'head'
+      inject: 'head',
+      // 不能用过 默认的 默认的是defer
+      scriptLoading:'blocking'
     })
   ]
 
