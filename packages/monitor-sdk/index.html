@@ -12,6 +12,10 @@
         <input id="js-error" type="button" value="点击抛出错误" onclick="errorClick()">
         <input id="promise-error1" type="button" value="promise Error1" onclick="promiseError1()">
         <input id="promise-error2" type="button" value="promise Error2" onclick="promiseError2()">
+        <input id="ajax-error" type="button" value="ajax-error" onclick="ajaxError()">
+        <input id="ajax-success" type="button" value="ajax-success" onclick="ajaxSuccess()">
+
+
     </div>
 
     <script>
@@ -31,8 +35,29 @@
                 window.test.xxx = 'xxxxx'
             })
         }
+
+        function ajaxError() {
+            const xhr = new XMLHttpRequest;
+            xhr.open('GET', '/error', true)
+            xhr.responseType = 'json'
+            xhr.onload = (e) => {
+                console.log('onload', e)
+            }
+            xhr.send()
+        }
+
+        function ajaxSuccess() {
+            const xhr = new XMLHttpRequest;
+            xhr.open('GET', '/success', true)
+            xhr.responseType = 'json'
+            xhr.onload = (e) => {
+                console.log('onload', e)
+            }
+            xhr.send()
+        }
+
         const handleError = (e) => {
-            console.log('e', e)
+
         }
     </script>
     <!-- 资源错误加载 -->

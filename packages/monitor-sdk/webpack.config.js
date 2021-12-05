@@ -9,12 +9,23 @@ module.exports = {
     filename: 'monitor.js'//文件名
   },
   devServer: {
-    // allowedHosts:'all',
-    // static: {
-    //   directory: path.join(__dirname, 'dist'),
-    // },
-    // compress: true,
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
     port: 9000,
+    onBeforeSetupMiddleware: function (devServer) {
+      if (!devServer) {
+        throw new Error('webpack-dev-server is not defined');
+      }
+
+      devServer.app.get('/success', function (req, res) {
+        res.json({ id: 1 });//200
+      });
+      devServer.app.get('/error', function (req, res) {
+        res.sendStatus(500);//500
+      });
+    },
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
@@ -32,7 +43,7 @@ module.exports = {
       template: './index.html',
       inject: 'head',
       // 不能用过 默认的 默认的是defer
-      scriptLoading:'blocking'
+      scriptLoading: 'blocking'
     })
   ]
 

@@ -6,7 +6,6 @@ import tracker from "../utils/tracker";
 export function injectPromiseError() {
   //监听全局未捕获的错误
   window.addEventListener('unhandledrejection', (event) => {
-    console.log('Promise error', event);
     let lastEvent = getLastEvent();
     let message;
     let filename;
