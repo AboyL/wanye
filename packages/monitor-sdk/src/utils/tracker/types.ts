@@ -26,12 +26,39 @@ export type XHRError = TupleToUnion<TupleWithString<['load', 'error', 'abort'], 
 
 // 实际上是一个接口而不是一个枚举
 export type XHRErrorEnum = TupleToEnum<TupleWithString<['load', 'error', 'abort'], 'XHRError'>>
-export interface TrackerProps {
+
+
+// 时间性能检测
+export type TrackerTiming = Partial<{
+  dnsTime: number, // dns解析耗时
+  connectTime: number,  //连接时间
+  ttfbTime: number, //首字节到达时间
+  reqTime: number, // 内容传输耗时
+  analysisDomTime: number, // 文档解析耗时
+  blankTime: number, //白屏时间
+  timeToInteractive: number, //首次可交互时间
+  domContentLoadedTime: number, // 资源请求耗时
+  parseDOMTime: number, //DOM解析的时间 整个的时间包括了资源的加载时间
+  domReadyTime: number, // dom ready时间 此时是总的资源加载完了的这些时间
+  loadTIme: number, //完整的加载时间
+  firstPaint: number, // FP
+  firstContentfulPaint: number, // FCP
+  firstMeaningfulPaint: number, // FMP
+  largestContentfulPaint: number, // LCP
+}>
+
+export type FIDTiming = Partial<{
+  inputDelay: number,//延时的时间
+  duration: number,//处理的时间
+  startTime: number, // 开始时间
+}>
+
+export interface TrackerProps extends TrackerTiming, FIDTiming {
   // 监控指标的大类
   // stability 稳定性监控
-  kind: 'stability',
+  kind: 'stability' | 'experience',
   // 错误监控等
-  type: 'error' | 'xhrError' | 'blank',
+  type: 'error' | 'xhrError' | 'blank' | 'timing' | 'firstInputDelay',
   // JS执行错误
   // Promise 错误
   // 资源加载错误

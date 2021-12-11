@@ -16,7 +16,6 @@ function getExtraData() {
   }
 }
 
-//gif图片做上传 图片速度 快没有跨域 问题，
 class SendTracker {
   url: string
   xhr: XMLHttpRequest
@@ -24,7 +23,7 @@ class SendTracker {
     this.url = `http://${project}.${host}/logstores/${logStore}/track`;//上报的路径
     this.xhr = new XMLHttpRequest;
   }
-  send(data:TrackerProps) {
+  send(data: TrackerProps) {
     let extraData = getExtraData();
     let log: { [props: string]: any } = { ...extraData, ...data };
     //对象 的值不能是数字

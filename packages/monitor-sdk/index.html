@@ -5,20 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>前端监控SDK</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.core.js"></script>
 </head>
 
 <body>
-    <div id="container">
+    <div id="container" style="background-color: bisque; height: 100px;">
+    </div>
+    <div id="container2" style="background-color: red;"></div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('container').innerHTML = `
         <input id="js-error" type="button" value="点击抛出错误" onclick="errorClick()">
         <input id="promise-error1" type="button" value="promise Error1" onclick="promiseError1()">
         <input id="promise-error2" type="button" value="promise Error2" onclick="promiseError2()">
         <input id="ajax-error" type="button" value="ajax-error" onclick="ajaxError()">
-        <input id="ajax-success" type="button" value="ajax-success" onclick="ajaxSuccess()">
+        <input id="ajax-success" type="button" value="ajax-success" onclick="ajaxSuccess()">        
+        `
+        }, 1000);
 
+        setTimeout(() => {
+            const divEle = document.createElement('div')
+            divEle.innerHTML = `<div elementtiming="meaningful" >有意义的元素</div>`
+            document.getElementById('container').appendChild(divEle)
+        }, 2000);
+        setTimeout(() => {
+            const divEle = document.createElement('div')
+            divEle.innerHTML = `<div elementtiming="meaningfuxxxxl" >有意义的元素</div>`
+            document.getElementById('container').appendChild(divEle);
+            // 第二次的不会再观测到了
+        }, 3000);
+        setTimeout(() => {
+            const pEle = document.createElement('p')
+            pEle.innerText = Array(10000).join('一')
+            document.getElementById('container2').appendChild(pEle)
+        }, 3000);
 
-    </div>
-
-    <script>
         function errorClick() {
             window.test.xxx = 'xxxxx'
         }
