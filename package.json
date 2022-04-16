@@ -4,7 +4,7 @@
   "description": "万叶繁荣",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "builds": "pnpm run build"
   },
   "repository": {
     "type": "git",
